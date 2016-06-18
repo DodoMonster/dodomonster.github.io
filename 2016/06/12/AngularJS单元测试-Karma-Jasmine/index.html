@@ -1,0 +1,653 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AngularJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。
+什么是单元测试众所周知，AngularJS的优点之一就是其单元测试简单得令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS单元测试-Karma+Jasmine">
+<meta property="og:url" content="http://dodomonster.github.io/2016/06/12/AngularJS单元测试-Karma-Jasmine/index.html">
+<meta property="og:site_name" content="Monster House">
+<meta property="og:description" content="前言入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。
+什么是单元测试众所周知，AngularJS的优点之一就是其单元测试简单得令">
+<meta property="og:updated_time" content="2016-06-11T16:43:43.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngularJS单元测试-Karma+Jasmine">
+<meta name="twitter:description" content="前言入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。
+什么是单元测试众所周知，AngularJS的优点之一就是其单元测试简单得令">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://dodomonster.github.io/2016/06/12/AngularJS单元测试-Karma-Jasmine/"/>
+
+  <title> AngularJS单元测试-Karma+Jasmine | Monster House </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Monster House</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">DodoMonster's Blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AngularJS单元测试-Karma+Jasmine
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-12T00:41:14+08:00" content="2016-06-12">
+              2016-06-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。</p>
+<h2 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试"></a>什么是单元测试</h2><p>众所周知，AngularJS的优点之一就是其单元测试简单得令人难以置信，也由于这样的特效大大提升了应用的稳定性及长期可维护性。</p>
+<p>那么什么是单元测试呢？单元测试是指：将单个函数从代码中抽取出来，为它编写断言(assertion)以及测试用例来确保它的实际运行结果是符合预期的。</p>
+<h2 id="为什么在基于Javascript的客户端进行单元测试"><a href="#为什么在基于Javascript的客户端进行单元测试" class="headerlink" title="为什么在基于Javascript的客户端进行单元测试"></a>为什么在基于Javascript的客户端进行单元测试</h2><ol>
+<li>正确性证明</li>
+<li>弥补编译器的缺乏</li>
+<li>尽早发现错误</li>
+<li>防止回归错误</li>
+<li>良好的说明方式</li>
+</ol>
+<h2 id="安装karma"><a href="#安装karma" class="headerlink" title="安装karma"></a>安装karma</h2><p>karma(<a href="http://karma-runner.github.io/)能够让单元测试变得非常简单的同时其速度更是快得出乎预料。它通过NodeJS和SocketIO来进行测试。" target="_blank" rel="external">http://karma-runner.github.io/)能够让单元测试变得非常简单的同时其速度更是快得出乎预料。它通过NodeJS和SocketIO来进行测试。</a></p>
+<ol>
+<li>安装NodeJS，安装配置可参考<a href="https://segmentfault.com/a/1190000005602881" target="_blank" rel="external">windows 10 下配置安装node.js</a></li>
+<li><p>全局安装Karma CLI<br>打开命令行输入命令：sudo npm install -g karma-cli</p>
+</li>
+<li><p>本地安装Karma，安装目录为需要运行的测试用例所在目录，命令：npm install karma</p>
+</li>
+<li><p>Karmayeyou chaj ，本文主要介绍通过Jasmine和Chrome的加载插件，安装命令：npm install karma-jasmine karma-chrome-launcher</p>
+</li>
+</ol>
+<p><strong>注意：3、4步骤的命令都必须运行在源代码所在的目录中</strong></p>
+<h2 id="Karma配置"><a href="#Karma配置" class="headerlink" title="Karma配置"></a>Karma配置</h2><p>工欲善其事，必先利其器。在正式开始使用Karma之前，我们得定义好配置文件</p>
+<pre><code>module.exports=function(config){
+    config.set({
+        //放置文件的根目录
+        basePath:&apos;&apos;,
+
+        //使用哪些测试框架(jasmine/mocha/qunit...)
+        frameworks:[&apos;jasmine&apos;],
+
+        //浏览器需要加载的文件列表或者文件匹配表达式
+        files:[
+            &apos;angular.min.js&apos;,
+            &apos;angular-mocks.js&apos;,
+            &apos;controller.js&apos;,
+            &apos;simpleSpec.js&apos;
+        ],
+
+        //需要排除的文件列表或者文件匹配正则表达式
+        exclude:[],
+
+        //web服务器端口
+        port:8081,
+
+        //日志等级
+        //合法值为：LOG_DISABLE||LOG_ERROR||
+        //            LOG_WARN||LOG_INFO||LOG_DEBUG
+        logLevel:config.LOG_INFO,
+
+        //进行测试时是否允许随时监视文件编号
+        autoWatch: true,
+
+        //启动以下浏览器，目前可以兼容
+        // - Chrome
+        // - ChromeCanary
+        // - Firefox
+        // - Opera
+        // - Safari(仅限Mac)
+        // - PhantomJS
+        // - IE(仅限Windows)
+        browsers:[&apos;Chrome&apos;],
+
+        //持续集成模式
+        //如果设置成true则会启动浏览器，运行测试然后退出
+        singleRun:false
+
+    });
+};
+</code></pre><p>参数解析：</p>
+<ul>
+<li><p>basePath（根目录）<br>basePath参数指定了所需要加载文件所处的目录，包括测试本身所需文件以及测试引用到的文件。该参数是一个相对路径，其根路径为Karma配置文件所处目录。</p>
+</li>
+<li><p>frameworks（框架）<br>该参数指定了采用哪些框架，它是一个数字，可以加载多个框架。</p>
+</li>
+<li><p>files（文件）<br>该参数指定了需要加载的文件名（或者文件路径），这也是一个数组。我们使用的是AngularJS，那么首先需要加载的是AngularJS的库，接着就是angular-mock.js，它是由AngularJS提供的一个辅助测试的库。最后，还需要加载应用的源文件以及实际的单元测试文件。</p>
+</li>
+<li><p>exclude（需要排除的文件）<br>该参数指定了一组需要排除的文件。既可以使用通配符比如**.js，也可以指定完整的文件名比如karma.conf.js</p>
+</li>
+<li><p>port（端口）<br>该参数指定了Karma测试运行在哪个端口上，默认值是8080（与tomcat的默认端口相同，请确认Tomcat没有占用该端口）</p>
+</li>
+<li><p>logLevel（日志等级）<br>该参数指定了Karma需要收集浏览器哪一等级的日志（console.log，console.info）</p>
+</li>
+<li><p>autoWatch（自动监控）<br>该参数是目前为止Karma最炫酷的功能，它告诉Karma监控所有files参数中包含的文件，如果它们中的任何一个更新了，就重新运行所有受影响的单元测试。如果该参数被设置为true，那么用户就不需要手动触发测试，Karma会自动进行监控。</p>
+</li>
+<li><p>browsers（浏览器）<br>该参数指定了Karma初始化时打开哪个浏览器。大部分情况下，需要相应地加载插件（鉴于我安装的是chrome-launcher，就知道Chrome）</p>
+</li>
+<li><p>singleRun（是否重复运行）<br>该参数是一个布尔值，决定了Karma在结束一次单元测试运行后是否会关闭服务器。在持续集成（continuous integration）环境下，该参数应该被设置为true，在其他环境可无视之。</p>
+</li>
+</ul>
+<p><a href="http://bit.ly/lnySvJS" target="_blank" rel="external">Karma Configuration File Overview page</a></p>
+<p>其实。。。上面描述的配置是可以自动生成的!!!一行命令就足以自动产生所需配置文件：<code>karma init</code>，输入命令后需要回答一些问题，按你自己的需要输入回答即可。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AngularJS/" rel="tag">#AngularJS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/10/blogBirth/" rel="next" title="Blog破蛋记">
+                <i class="fa fa-chevron-left"></i> Blog破蛋记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="DodoMonster" />
+          <p class="site-author-name" itemprop="name">DodoMonster</p>
+          <p class="site-description motion-element" itemprop="description">Welcome to DodoMonster's Blog.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是单元测试"><span class="nav-number">2.</span> <span class="nav-text">什么是单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么在基于Javascript的客户端进行单元测试"><span class="nav-number">3.</span> <span class="nav-text">为什么在基于Javascript的客户端进行单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装karma"><span class="nav-number">4.</span> <span class="nav-text">安装karma</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karma配置"><span class="nav-number">5.</span> <span class="nav-text">Karma配置</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DodoMonster</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
