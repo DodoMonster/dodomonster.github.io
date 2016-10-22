@@ -100,14 +100,12 @@
 <meta property="og:description" content="##前言哎 七月份开始实习，九月份开始奔波校招。很忙碌也很累也没怎么好好学习了。最近面试被问到有关于前端安全，才发现自己一直忽略了这方面，于是赶紧恶补！！！
 ##分类开发者，一般主要分为前端和后端。而对于开发者来说，安全就主要分为了前端安全和后端安全，而WEB基本攻击大致可以分为三大类：“资源枚举”、“参数操纵” 和 “其它攻击”。。
 资源枚举对于一个团队来说，会有很多编码规范，命名规范来规范团队">
-<meta property="og:image" content="http://dodomonster.com/pay?appleId = 99">
-<meta property="og:updated_time" content="2016-10-22T04:45:10.828Z">
+<meta property="og:updated_time" content="2016-10-22T04:59:33.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端菜鸟来说web安全">
 <meta name="twitter:description" content="##前言哎 七月份开始实习，九月份开始奔波校招。很忙碌也很累也没怎么好好学习了。最近面试被问到有关于前端安全，才发现自己一直忽略了这方面，于是赶紧恶补！！！
 ##分类开发者，一般主要分为前端和后端。而对于开发者来说，安全就主要分为了前端安全和后端安全，而WEB基本攻击大致可以分为三大类：“资源枚举”、“参数操纵” 和 “其它攻击”。。
 资源枚举对于一个团队来说，会有很多编码规范，命名规范来规范团队">
-<meta name="twitter:image" content="http://dodomonster.com/pay?appleId = 99">
 
 
 
@@ -411,9 +409,9 @@ if user_data = {&quot;xss&quot;: &quot;&lt;/script&gt;&lt;script&gt;alert(&apos;
 <li>转义字符处理不合适；</li>
 <li>多个提交处理不当。</li>
 </ul>
-<p>如：你想在一个超市站点查看apple的相关信息，url：<a href="http://dodomonster.org?id=99,你就会知道哦，原来apple的键值id为99" target="_blank" rel="external">http://dodomonster.org?id=99,你就会知道哦，原来apple的键值id为99</a></p>
-<p>后台收到url会执行查询语句：select * from fruit where id = 99;</p>
-<p>如果我们把url改为<a href="http://dodomonster.org?id=99" target="_blank" rel="external">http://dodomonster.org?id=99</a> or 1&gt;0，数据库查询语句就会变为select * from fruit where appleId = 99 or 1&gt;0，从而有心人就会获取了整个数据库中所有的水果信息。</p>
+<p>如：你想在一个超市站点查看apple的相关信息，<code>url：http://dodomonster.org?id=99</code>,你就会知道哦，原来apple的键值id为99</p>
+<p>后台收到url会执行查询语句：<code>select * from fruit where id = 99;</code></p>
+<p>如果我们把url改为<a href="http://dodomonster.org?id=99" target="_blank" rel="external">http://dodomonster.org?id=99</a> or 1&gt;0，数据库查询语句就会变为<br><code>select * from fruit where appleId = 99 or 1&gt;0</code><br>从而有心人就会获取了整个数据库中所有的水果信息。</p>
 <h3 id="参数操纵-XPath注入"><a href="#参数操纵-XPath注入" class="headerlink" title="参数操纵 - XPath注入"></a>参数操纵 - XPath注入</h3><p>   XPath注入和SQL注入原理差不多，只不过XPath注入的数据库是xml格式的。</p>
 <h3 id="参数操纵-会话劫持"><a href="#参数操纵-会话劫持" class="headerlink" title="参数操纵 - 会话劫持"></a>参数操纵 - 会话劫持</h3><p>在现实生活中，比如你去市场买菜，在交完钱后你要求先去干一些别的事情，稍候再来拿菜；如果这个时候某个陌生人要求把菜拿走，卖菜的人会把菜给陌生人吗？！当然，这只是一个比喻，但这恰恰就是会话劫持的喻意。所谓会话，就是两台主机之间的一次通讯。[引自百度百科]</p>
 <p>访问一个http网站要与服务器建立一次HTTP回话。假设跟你处于同一个子网上的“朋友”，想伪装成你来劫持你的HTTP会话，那么服务器会信息返回给那个人吗？</p>
@@ -422,7 +420,7 @@ if user_data = {&quot;xss&quot;: &quot;&lt;/script&gt;&lt;script&gt;alert(&apos;
 <h3 id="其他攻击-CSRF"><a href="#其他攻击-CSRF" class="headerlink" title="其他攻击 - CSRF"></a>其他攻击 - CSRF</h3><p>CSRF，cross-site request forgery,跨站请求伪造。与XSS非常相似，但是XSS是利用用户对当前网站的信任来发起攻击，而CSRF是利用网站对用户的信任来发起攻击。</p>
 <p>CSRF攻击力：以你的名义发送邮件、发消息，盗取你的账号，甚至购买商品，虚拟货币转账，个人隐私泄露以及财产安全。</p>
 <p> 对于一个安全性很低的电商网站，如果你已经登录了网站，且没关闭浏览器，在任何情况都可以作为一个已通过身份验证登录的用户来购买商品等操作，而无须重新登录或者输入支付密码。</p>
-<p>我们可以给一个用户的邮箱发送一份邮件里面包含一张图片<br><img src="http://dodomonster.com/pay?appleId = 99"><br>img、src、iframe都是不受同源限制的，假设你使用的邮箱很直白地显示了这张图片那你就会直接跳到购买id为99的支付页面，直接支付，做了购买的动作操作。</p>
+<p>我们可以给一个用户的邮箱发送一份邮件里面包含一张图片<br><code>&lt;img src = &quot;http://dodomonster.com/pay?appleId = 99&quot;/ alt=&quot;http://dodomonster.com/pay?appleId = 99&quot;&gt;</code><br>img、src、iframe都是不受同源限制的，假设你使用的邮箱很直白地显示了这张图片那你就会直接跳到购买id为99的支付页面，直接支付，做了购买的动作操作。</p>
 <p> <em>这就是为什么现在大部分的邮箱都不会直接显示图片的原因！all for u！</em></p>
 <p>防范CSRF：</p>
 <ol>
