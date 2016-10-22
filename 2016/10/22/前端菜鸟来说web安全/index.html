@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AngularJS,单元测试,Karma," />
+  <meta name="keywords" content="web安全," />
 
 
 
@@ -90,19 +90,24 @@
 
 
 
-<meta name="description" content="前言入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。
-什么是单元测试众所周知，AngularJS的优点之一就是其单元测试简单得令">
+<meta name="description" content="##前言哎 七月份开始实习，九月份开始奔波校招。很忙碌也很累也没怎么好好学习了。最近面试被问到有关于前端安全，才发现自己一直忽略了这方面，于是赶紧恶补！！！
+##分类开发者，一般主要分为前端和后端。而对于开发者来说，安全就主要分为了前端安全和后端安全，而WEB基本攻击大致可以分为三大类：“资源枚举”、“参数操纵” 和 “其它攻击”。。
+资源枚举对于一个团队来说，会有很多编码规范，命名规范来规范团队">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AngularJS单元测试-Karma+Jasmine">
-<meta property="og:url" content="http://dodomonster.github.io/2016/06/12/AngularJS单元测试-Karma-Jasmine/index.html">
+<meta property="og:title" content="前端菜鸟来说web安全">
+<meta property="og:url" content="http://dodomonster.github.io/2016/10/22/前端菜鸟来说web安全/index.html">
 <meta property="og:site_name" content="Monster House">
-<meta property="og:description" content="前言入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。
-什么是单元测试众所周知，AngularJS的优点之一就是其单元测试简单得令">
-<meta property="og:updated_time" content="2016-06-22T06:27:54.591Z">
+<meta property="og:description" content="##前言哎 七月份开始实习，九月份开始奔波校招。很忙碌也很累也没怎么好好学习了。最近面试被问到有关于前端安全，才发现自己一直忽略了这方面，于是赶紧恶补！！！
+##分类开发者，一般主要分为前端和后端。而对于开发者来说，安全就主要分为了前端安全和后端安全，而WEB基本攻击大致可以分为三大类：“资源枚举”、“参数操纵” 和 “其它攻击”。。
+资源枚举对于一个团队来说，会有很多编码规范，命名规范来规范团队">
+<meta property="og:image" content="http://dodomonster.com/pay?appleId = 99">
+<meta property="og:updated_time" content="2016-10-22T04:45:10.828Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AngularJS单元测试-Karma+Jasmine">
-<meta name="twitter:description" content="前言入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。
-什么是单元测试众所周知，AngularJS的优点之一就是其单元测试简单得令">
+<meta name="twitter:title" content="前端菜鸟来说web安全">
+<meta name="twitter:description" content="##前言哎 七月份开始实习，九月份开始奔波校招。很忙碌也很累也没怎么好好学习了。最近面试被问到有关于前端安全，才发现自己一直忽略了这方面，于是赶紧恶补！！！
+##分类开发者，一般主要分为前端和后端。而对于开发者来说，安全就主要分为了前端安全和后端安全，而WEB基本攻击大致可以分为三大类：“资源枚举”、“参数操纵” 和 “其它攻击”。。
+资源枚举对于一个团队来说，会有很多编码规范，命名规范来规范团队">
+<meta name="twitter:image" content="http://dodomonster.com/pay?appleId = 99">
 
 
 
@@ -123,9 +128,9 @@
 
 
 
-  <link rel="canonical" href="http://dodomonster.github.io/2016/06/12/AngularJS单元测试-Karma-Jasmine/"/>
+  <link rel="canonical" href="http://dodomonster.github.io/2016/10/22/前端菜鸟来说web安全/"/>
 
-  <title> AngularJS单元测试-Karma+Jasmine | Monster House </title>
+  <title> 前端菜鸟来说web安全 | Monster House </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -285,7 +290,7 @@
             
             
               
-                AngularJS单元测试-Karma+Jasmine
+                前端菜鸟来说web安全
               
             
           </h1>
@@ -297,8 +302,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-12T00:41:14+08:00" content="2016-06-12">
-              2016-06-12
+            <time itemprop="dateCreated" datetime="2016-10-22T12:43:56+08:00" content="2016-10-22">
+              2016-10-22
             </time>
           </span>
 
@@ -311,8 +316,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/AngularJS/" itemprop="url" rel="index">
-                    <span itemprop="name">AngularJS</span>
+                  <a href="/categories/web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">web安全</span>
                   </a>
                 </span>
 
@@ -323,7 +328,7 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/AngularJS/前端/" itemprop="url" rel="index">
+                  <a href="/categories/web安全/前端/" itemprop="url" rel="index">
                     <span itemprop="name">前端</span>
                   </a>
                 </span>
@@ -339,8 +344,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/12/AngularJS单元测试-Karma-Jasmine/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/12/AngularJS单元测试-Karma-Jasmine/" itemprop="commentsCount"></span>
+                <a href="/2016/10/22/前端菜鸟来说web安全/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/22/前端菜鸟来说web安全/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -350,7 +355,7 @@
 
           
           
-             <span id="/2016/06/12/AngularJS单元测试-Karma-Jasmine/" class="leancloud_visitors" data-flag-title="AngularJS单元测试-Karma+Jasmine">
+             <span id="/2016/10/22/前端菜鸟来说web安全/" class="leancloud_visitors" data-flag-title="前端菜鸟来说web安全">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -372,97 +377,63 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>入门AngularJS也算挺久了，但并没有运用到实际项目中。最近在看《AngularJS即学即用》这本书，感觉还不错，对入门挺好。但毕竟现在Angular2也出了蛮久了，但该书还是基于Angular1.2写的，尤其Angular1.2版本之后的变动和差异也蛮大的。不过已经既然已经开坑了还是想继续看完，也应该会有所收获。</p>
-<h2 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试"></a>什么是单元测试</h2><p>众所周知，AngularJS的优点之一就是其单元测试简单得令人难以置信，也由于这样的特效大大提升了应用的稳定性及长期可维护性。</p>
-<p>那么什么是单元测试呢？单元测试是指：将单个函数从代码中抽取出来，为它编写断言(assertion)以及测试用例来确保它的实际运行结果是符合预期的。</p>
-<h2 id="为什么在基于Javascript的客户端进行单元测试"><a href="#为什么在基于Javascript的客户端进行单元测试" class="headerlink" title="为什么在基于Javascript的客户端进行单元测试"></a>为什么在基于Javascript的客户端进行单元测试</h2><ol>
-<li>正确性证明</li>
-<li>弥补编译器的缺乏</li>
-<li>尽早发现错误</li>
-<li>防止回归错误</li>
-<li>良好的说明方式</li>
-</ol>
-<h2 id="安装karma"><a href="#安装karma" class="headerlink" title="安装karma"></a>安装karma</h2><p>karma(<a href="http://karma-runner.github.io/)能够让单元测试变得非常简单的同时其速度更是快得出乎预料。它通过NodeJS和SocketIO来进行测试。" target="_blank" rel="external">http://karma-runner.github.io/)能够让单元测试变得非常简单的同时其速度更是快得出乎预料。它通过NodeJS和SocketIO来进行测试。</a></p>
-<ol>
-<li>安装NodeJS，安装配置可参考<a href="https://segmentfault.com/a/1190000005602881" target="_blank" rel="external">windows 10 下配置安装node.js</a></li>
-<li><p>全局安装Karma CLI<br>打开命令行输入命令：sudo npm install -g karma-cli</p>
-</li>
-<li><p>本地安装Karma，安装目录为需要运行的测试用例所在目录，命令：npm install karma</p>
-</li>
-<li><p>Karmayeyou chaj ，本文主要介绍通过Jasmine和Chrome的加载插件，安装命令：npm install karma-jasmine karma-chrome-launcher</p>
-</li>
-</ol>
-<p><strong>注意：3、4步骤的命令都必须运行在源代码所在的目录中</strong></p>
-<h2 id="Karma配置"><a href="#Karma配置" class="headerlink" title="Karma配置"></a>Karma配置</h2><p>工欲善其事，必先利其器。在正式开始使用Karma之前，我们得定义好配置文件</p>
-<pre><code>module.exports=function(config){
-    config.set({
-        //放置文件的根目录
-        basePath:&apos;&apos;,
+        <p>##前言<br>哎 七月份开始实习，九月份开始奔波校招。很忙碌也很累也没怎么好好学习了。最近面试被问到有关于前端安全，才发现自己一直忽略了这方面，于是赶紧恶补！！！</p>
+<p>##分类<br>开发者，一般主要分为前端和后端。而对于开发者来说，安全就主要分为了前端安全和后端安全，而WEB基本攻击大致可以分为三大类：“资源枚举”、“参数操纵” 和 “其它攻击”。。</p>
+<h3 id="资源枚举"><a href="#资源枚举" class="headerlink" title="资源枚举"></a>资源枚举</h3><p>对于一个团队来说，会有很多编码规范，命名规范来规范团队的开发，例如类名用’-‘连接，id用驼峰命名法等。然后需要对项目做备份，把代码压缩成back.rar。然后还把代码备份放到了服务器上，那么那些想要访问你源码的“有心人”就可以有途径去访问下载到你的源码，那么你的项目源码将不再是秘密。<br>“有心人”会遍历你站点所有可访问的项目，然后把一些常用的备份文件一个个都枚举下载。如果你想对你站点的编码语言和数据库进行保密，但没有配置好后端错误信息的提示。那么“有心人”就可以在站点例的某个搜索结果页面篡改url参数，导致数据库查询错误而返回数据库错误提示信息，或者输入一个根本不存在的子页面地址来获取错误信息，进而可判断该站点使用了什么数据库或动态语言。</p>
+<h3 id="参数操纵-XSS"><a href="#参数操纵-XSS" class="headerlink" title="参数操纵 - XSS"></a>参数操纵 - XSS</h3><p> 什么是XSS呢？XSS全称是Cross-site scripting，跨域脚本攻击，是最常见的Web攻击之一。它是一种典型的出现在web应用中的计算机安全漏洞。XSS允许攻击者注入客户端脚本到Web页面中。一段跨域脚本漏洞可能会被攻击者用于通过一些入站控制，如同源策略。xss攻击主要侧重于客户端。</p>
+<p>  xss的攻击力：轻则用户体验异常弹窗，重则用户cookie数据被盗取，引导用户到非法地址。</p>
+<p><strong>a.HTML元素：</strong></p>
+<pre><code> &lt;input v-model = &quot;textXSS&quot;/&gt;
+ &lt;p&gt;{{ textXSS }}&lt;/p&gt;
 
-        //使用哪些测试框架(jasmine/mocha/qunit...)
-        frameworks:[&apos;jasmine&apos;],
+input：
+    &lt;script type=&apos;text/javascript&apos;&gt;alert(&apos;xss&apos;);&lt;/script&gt;//一个alert弹框将会出现。
+</code></pre><p><strong>b.HTML属性:</strong><br>    <img src=""><br>    if img_url = “xss = “alert(‘xss’)’<br>    浏览器就会解析成：<br>    <img src="" xss="alert('xss')"></p>
+<p>   <strong>c.url链接：</strong></p>
+<p>假如你想要在一个网站的输入框中输入你想搜索的关键字（例：“apple”），此时URL会变为<a href="http://dodomonster.org?keyword=apple正常的搜索。如果没有结果，则一般会显示‘apple’搜索结果为空。但是，如果你输入" target="_blank" rel="external">http://dodomonster.org?keyword=apple正常的搜索。如果没有结果，则一般会显示‘apple’搜索结果为空。但是，如果你输入</a>“<script type="text/javascript">alert(‘xss’);</script>“一个alert弹框将会出现。会提示<script type="text/javascript">alert(‘xss’);</script>搜索结果为空伴随着错误信息提示弹框“xss”，而且url还会变成<a href="http://dodomonster.org?" target="_blank" rel="external">http://dodomonster.org?</a><script type="text/javascript">alert(‘xss’);</script>-这是一个“有心人”可利用的漏洞</p>
+<p>  <strong>d.Javascript脚本：</strong></p>
+<pre><code>&lt;script&gt;var user_data = {{ user_data|json_encode }};&lt;/script&gt;
+if user_data = {&quot;xss&quot;: &quot;&lt;/script&gt;&lt;script&gt;alert(&apos;xss&apos;);&quot;}
 
-        //浏览器需要加载的文件列表或者文件匹配表达式
-        files:[
-            &apos;angular.min.js&apos;,
-            &apos;angular-mocks.js&apos;,
-            &apos;controller.js&apos;,
-            &apos;simpleSpec.js&apos;
-        ],
-
-        //需要排除的文件列表或者文件匹配正则表达式
-        exclude:[],
-
-        //web服务器端口
-        port:8081,
-
-        //日志等级
-        //合法值为：LOG_DISABLE||LOG_ERROR||
-        //            LOG_WARN||LOG_INFO||LOG_DEBUG
-        logLevel:config.LOG_INFO,
-
-        //进行测试时是否允许随时监视文件编号
-        autoWatch: true,
-
-        //启动以下浏览器，目前可以兼容
-        // - Chrome
-        // - ChromeCanary
-        // - Firefox
-        // - Opera
-        // - Safari(仅限Mac)
-        // - PhantomJS
-        // - IE(仅限Windows)
-        browsers:[&apos;Chrome&apos;],
-
-        //持续集成模式
-        //如果设置成true则会启动浏览器，运行测试然后退出
-        singleRun:false
-
-    });
-};
-</code></pre><p>参数解析：</p>
+浏览器会解析成：
+&lt;script&gt;var user_data = {&quot;xss&quot;: &quot;&lt;/script&gt;
+&lt;script&gt;alert(&apos;xss&apos;);&quot;};&lt;/script&gt;
+</code></pre><p> 解决办法：<br> ① 在不同上下文中，使用合适的escape方式<br> ② 不要相信任何来自用户的输入       </p>
+<h3 id="参数操纵-SQL注入"><a href="#参数操纵-SQL注入" class="headerlink" title="参数操纵 - SQL注入"></a>参数操纵 - SQL注入</h3><p>所谓SQL注入就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。</p>
+<p>SQL注入的攻击力：轻则暴露数据，刷爆数据库，重则表数据被恶意编辑、删除，或表被删除。</p>
+<p>发生的主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
+<p>根据相关技术原理，SQL注入可以分为平台层注入和代码层注入。前者由不安全的数据库配置或数据库平台的漏洞所致；后者主要是由于程序员对输入未进行细致地过滤，从而执行了非法的数据查询。基于此，SQL注入的产生原因通常表现在以下几方面：</p>
 <ul>
-<li><p>basePath（根目录）<br>basePath参数指定了所需要加载文件所处的目录，包括测试本身所需文件以及测试引用到的文件。该参数是一个相对路径，其根路径为Karma配置文件所处目录。</p>
-</li>
-<li><p>frameworks（框架）<br>该参数指定了采用哪些框架，它是一个数字，可以加载多个框架。</p>
-</li>
-<li><p>files（文件）<br>该参数指定了需要加载的文件名（或者文件路径），这也是一个数组。我们使用的是AngularJS，那么首先需要加载的是AngularJS的库，接着就是angular-mock.js，它是由AngularJS提供的一个辅助测试的库。最后，还需要加载应用的源文件以及实际的单元测试文件。</p>
-</li>
-<li><p>exclude（需要排除的文件）<br>该参数指定了一组需要排除的文件。既可以使用通配符比如**.js，也可以指定完整的文件名比如karma.conf.js</p>
-</li>
-<li><p>port（端口）<br>该参数指定了Karma测试运行在哪个端口上，默认值是8080（与tomcat的默认端口相同，请确认Tomcat没有占用该端口）</p>
-</li>
-<li><p>logLevel（日志等级）<br>该参数指定了Karma需要收集浏览器哪一等级的日志（console.log，console.info）</p>
-</li>
-<li><p>autoWatch（自动监控）<br>该参数是目前为止Karma最炫酷的功能，它告诉Karma监控所有files参数中包含的文件，如果它们中的任何一个更新了，就重新运行所有受影响的单元测试。如果该参数被设置为true，那么用户就不需要手动触发测试，Karma会自动进行监控。</p>
-</li>
-<li><p>browsers（浏览器）<br>该参数指定了Karma初始化时打开哪个浏览器。大部分情况下，需要相应地加载插件（鉴于我安装的是chrome-launcher，就知道Chrome）</p>
-</li>
-<li><p>singleRun（是否重复运行）<br>该参数是一个布尔值，决定了Karma在结束一次单元测试运行后是否会关闭服务器。在持续集成（continuous integration）环境下，该参数应该被设置为true，在其他环境可无视之。</p>
-</li>
+<li>不当的类型处理；</li>
+<li>不安全的数据库配置；</li>
+<li>不合理的查询集处理；</li>
+<li>不当的错误处理；</li>
+<li>转义字符处理不合适；</li>
+<li>多个提交处理不当。</li>
 </ul>
-<p><a href="http://bit.ly/lnySvJS" target="_blank" rel="external">Karma Configuration File Overview page</a></p>
-<p>其实。。。上面描述的配置是可以自动生成的!!!一行命令就足以自动产生所需配置文件：<code>karma init</code>，输入命令后需要回答一些问题，按你自己的需要输入回答即可。</p>
+<p>如：你想在一个超市站点查看apple的相关信息，url：<a href="http://dodomonster.org?id=99,你就会知道哦，原来apple的键值id为99" target="_blank" rel="external">http://dodomonster.org?id=99,你就会知道哦，原来apple的键值id为99</a></p>
+<p>后台收到url会执行查询语句：select * from fruit where id = 99;</p>
+<p>如果我们把url改为<a href="http://dodomonster.org?id=99" target="_blank" rel="external">http://dodomonster.org?id=99</a> or 1&gt;0，数据库查询语句就会变为select * from fruit where appleId = 99 or 1&gt;0，从而有心人就会获取了整个数据库中所有的水果信息。</p>
+<h3 id="参数操纵-XPath注入"><a href="#参数操纵-XPath注入" class="headerlink" title="参数操纵 - XPath注入"></a>参数操纵 - XPath注入</h3><p>   XPath注入和SQL注入原理差不多，只不过XPath注入的数据库是xml格式的。</p>
+<h3 id="参数操纵-会话劫持"><a href="#参数操纵-会话劫持" class="headerlink" title="参数操纵 - 会话劫持"></a>参数操纵 - 会话劫持</h3><p>在现实生活中，比如你去市场买菜，在交完钱后你要求先去干一些别的事情，稍候再来拿菜；如果这个时候某个陌生人要求把菜拿走，卖菜的人会把菜给陌生人吗？！当然，这只是一个比喻，但这恰恰就是会话劫持的喻意。所谓会话，就是两台主机之间的一次通讯。[引自百度百科]</p>
+<p>访问一个http网站要与服务器建立一次HTTP回话。假设跟你处于同一个子网上的“朋友”，想伪装成你来劫持你的HTTP会话，那么服务器会信息返回给那个人吗？</p>
+<p>答案是肯定的，因为HTTP会话并不安全。它在经过TCP/IP协议封装传输数据时，在传输的数据的每一个字节中插入一个32位的序列号码，这个序列号用来保持跟踪数据和提供可靠性（序列号是依循数据顺序逐步递增的）。第三方攻击者可以通过嗅探的方式来获取用户与服务器通讯中的报文信息，如果他能猜测到数据中的序列号，那便能把合法的用户断开，伪装成合法用户让自己控制后续的通话。</p>
+<p>对于会话劫持的预防，可以走SSH协议、增强网络安全系统健壮性，也可以使用无序的UUID来替代通讯中的序列号码（而非逐步递增）。</p>
+<h3 id="其他攻击-CSRF"><a href="#其他攻击-CSRF" class="headerlink" title="其他攻击 - CSRF"></a>其他攻击 - CSRF</h3><p>CSRF，cross-site request forgery,跨站请求伪造。与XSS非常相似，但是XSS是利用用户对当前网站的信任来发起攻击，而CSRF是利用网站对用户的信任来发起攻击。</p>
+<p>CSRF攻击力：以你的名义发送邮件、发消息，盗取你的账号，甚至购买商品，虚拟货币转账，个人隐私泄露以及财产安全。</p>
+<p> 对于一个安全性很低的电商网站，如果你已经登录了网站，且没关闭浏览器，在任何情况都可以作为一个已通过身份验证登录的用户来购买商品等操作，而无须重新登录或者输入支付密码。</p>
+<p>我们可以给一个用户的邮箱发送一份邮件里面包含一张图片<br><img src="http://dodomonster.com/pay?appleId = 99"><br>img、src、iframe都是不受同源限制的，假设你使用的邮箱很直白地显示了这张图片那你就会直接跳到购买id为99的支付页面，直接支付，做了购买的动作操作。</p>
+<p> <em>这就是为什么现在大部分的邮箱都不会直接显示图片的原因！all for u！</em></p>
+<p>防范CSRF：</p>
+<ol>
+<li><p>检查报头中的Referer参数确保请求发自正确的网站（但XHR请求可调用setRequestHeader方法来修改Referer报头）；</p>
+</li>
+<li><p>对于任何重要的请求都需要重新验证用户的身份；</p>
+</li>
+<li><p>创建一个唯一的令牌（Token），将其存在服务端的session中及客户端的cookie中，对任何请求，都检查二者是否一致。</p>
+</li>
+</ol>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>夜深了，早点休息！</p>
 
       
     </div>
@@ -484,11 +455,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/AngularJS/" rel="tag">#AngularJS</a>
-          
-            <a href="/tags/单元测试/" rel="tag">#单元测试</a>
-          
-            <a href="/tags/Karma/" rel="tag">#Karma</a>
+            <a href="/tags/web安全/" rel="tag">#web安全</a>
           
         </div>
       
@@ -497,17 +464,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/10/blogBirth/" rel="next" title="Blog破蛋记">
-                <i class="fa fa-chevron-left"></i> Blog破蛋记
+              <a href="/2016/07/26/studyNode/" rel="next" title="URL,URI,URN的区别">
+                <i class="fa fa-chevron-left"></i> URL,URI,URN的区别
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/23/angularJS学习应用——phonecat/" rel="prev" title="angularJS学习应用——phonecat">
-                angularJS学习应用——phonecat <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -533,8 +496,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/12/AngularJS单元测试-Karma-Jasmine/"
-           data-title="AngularJS单元测试-Karma+Jasmine" data-url="http://dodomonster.github.io/2016/06/12/AngularJS单元测试-Karma-Jasmine/">
+      <div class="ds-thread" data-thread-key="2016/10/22/前端菜鸟来说web安全/"
+           data-title="前端菜鸟来说web安全" data-url="http://dodomonster.github.io/2016/10/22/前端菜鸟来说web安全/">
       </div>
     
   </div>
@@ -654,7 +617,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是单元测试"><span class="nav-number">2.</span> <span class="nav-text">什么是单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么在基于Javascript的客户端进行单元测试"><span class="nav-number">3.</span> <span class="nav-text">为什么在基于Javascript的客户端进行单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装karma"><span class="nav-number">4.</span> <span class="nav-text">安装karma</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karma配置"><span class="nav-number">5.</span> <span class="nav-text">Karma配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#资源枚举"><span class="nav-number">1.</span> <span class="nav-text">资源枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数操纵-XSS"><span class="nav-number">2.</span> <span class="nav-text">参数操纵 - XSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数操纵-SQL注入"><span class="nav-number">3.</span> <span class="nav-text">参数操纵 - SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数操纵-XPath注入"><span class="nav-number">4.</span> <span class="nav-text">参数操纵 - XPath注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数操纵-会话劫持"><span class="nav-number">5.</span> <span class="nav-text">参数操纵 - 会话劫持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他攻击-CSRF"><span class="nav-number">6.</span> <span class="nav-text">其他攻击 - CSRF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后话"><span class="nav-number">7.</span> <span class="nav-text">后话</span></a></li></ol></div>
             
           </div>
         </section>
