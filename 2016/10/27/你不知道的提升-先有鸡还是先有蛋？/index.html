@@ -90,22 +90,22 @@
 
 
 
-<meta name="description" content="##一、先有鸡还有先有蛋？直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。
+<meta name="description" content="一、先有鸡还有先有蛋？直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。
 123a = 2;var a;console.log(a);
-大家觉得console.log(…)会输出什么呢？很多开发者会认为是undefined，因为var a声明在a = 2之后，他们自然而然地认为变量被重新复制了，因此会被赋予默认值">
+大家觉得console.log(…)会输出什么呢？很多开发者会认为是undefined，因为var a声明在a = 2之后，他们自然而然地认为变量被重新复制了，因此会被赋予默认值un">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你不知道的提升-先有鸡还是先有蛋？">
 <meta property="og:url" content="http://dodomonster.github.io/2016/10/27/你不知道的提升-先有鸡还是先有蛋？/index.html">
 <meta property="og:site_name" content="Monster House">
-<meta property="og:description" content="##一、先有鸡还有先有蛋？直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。
+<meta property="og:description" content="一、先有鸡还有先有蛋？直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。
 123a = 2;var a;console.log(a);
-大家觉得console.log(…)会输出什么呢？很多开发者会认为是undefined，因为var a声明在a = 2之后，他们自然而然地认为变量被重新复制了，因此会被赋予默认值">
-<meta property="og:updated_time" content="2016-10-26T17:20:05.574Z">
+大家觉得console.log(…)会输出什么呢？很多开发者会认为是undefined，因为var a声明在a = 2之后，他们自然而然地认为变量被重新复制了，因此会被赋予默认值un">
+<meta property="og:updated_time" content="2016-12-08T16:15:05.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你不知道的提升-先有鸡还是先有蛋？">
-<meta name="twitter:description" content="##一、先有鸡还有先有蛋？直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。
+<meta name="twitter:description" content="一、先有鸡还有先有蛋？直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。
 123a = 2;var a;console.log(a);
-大家觉得console.log(…)会输出什么呢？很多开发者会认为是undefined，因为var a声明在a = 2之后，他们自然而然地认为变量被重新复制了，因此会被赋予默认值">
+大家觉得console.log(…)会输出什么呢？很多开发者会认为是undefined，因为var a声明在a = 2之后，他们自然而然地认为变量被重新复制了，因此会被赋予默认值un">
 
 
 
@@ -363,14 +363,14 @@
       
 
       
-        <p>##一、先有鸡还有先有蛋？<br>直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。</p>
+        <h2 id="一、先有鸡还有先有蛋？"><a href="#一、先有鸡还有先有蛋？" class="headerlink" title="一、先有鸡还有先有蛋？"></a>一、先有鸡还有先有蛋？</h2><p>直觉上会认为javascript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确，有一种特殊情况会导致这个假设是错误的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 2;</span><br><span class="line">var a;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure>
 <p>大家觉得console.log(…)会输出什么呢？<br>很多开发者会认为是undefined，因为var a声明在a = 2之后，他们自然而然地认为变量被重新复制了，因此会被赋予默认值undefined。但是，<strong>真正的输出结果是2。</strong></p>
 <p>考虑另一段代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);</span><br><span class="line">var a = 2;</span><br></pre></td></tr></table></figure>
 <p>鉴于上一个代码片段所表现出来的某种自上而下的行为特点，你可能会认为这个代码段也会有同样的行为而输出2.还有人可能认为，由于变量a在使用前没有先进行声明因此会抛出ReferenceError异常。<br>不幸的是两种猜测都是不对的。输出的结果是undefined。</p>
 <p>那么到底发生了什么？看起来我们面对的是一个先有鸡还是先有蛋的问题，到底是声明（蛋）在前，还是赋值（鸡）在前？</p>
-<p>##你需要知道的编译器<br>引擎会再解释javascript代码之前首先对其进行编译。在编译阶段中的一部分工作就是找到所有的声明，并用合适的作用域将它们关联起来。<br>因此，正确的思考思路是，<strong>包括变量和函数在内的所有声明都会在任何代码被执行前首先被处理。</strong></p>
+<h2 id="你需要知道的编译器"><a href="#你需要知道的编译器" class="headerlink" title="你需要知道的编译器"></a>你需要知道的编译器</h2><p>引擎会再解释javascript代码之前首先对其进行编译。在编译阶段中的一部分工作就是找到所有的声明，并用合适的作用域将它们关联起来。<br>因此，正确的思考思路是，<strong>包括变量和函数在内的所有声明都会在任何代码被执行前首先被处理。</strong></p>
 <p>当你看到var a = 2;时，可能会认为这是一个声明，但Javascript实际上会将其看成两个声明：var a 和 a = 2;第一个定义声明是在编译阶段进行的。第二个赋值声明会被<em>留在原地等待执行阶段</em></p>
 <p>第一个代码片段会以如下形式进行处理：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a;</span><br><span class="line">a = 2;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure>
@@ -389,7 +389,7 @@
 <p>同时也要记住，即使是具名的函数表达式，名称标识符在赋值之前也无法在所在作用域中使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foo();//TypeError</span><br><span class="line">bar();//ReferenceError</span><br><span class="line">var foo = function()&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个代码片段经过提升后，实际上会被理解为以下形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo;</span><br><span class="line">foo();//TypeError</span><br><span class="line">bar();//ReferenceError</span><br><span class="line">foo = function()&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##函数优先<br><strong>函数声明和变量声明都会被提升。</strong>但是一个值得注意的细节（这个细节可以出现在有多个“重复”声明的代码中）是<strong>函数会首先被提升，然后才是变量</strong><br>考虑以下代码：</p>
+<h2 id="函数优先"><a href="#函数优先" class="headerlink" title="函数优先"></a>函数优先</h2><p><strong>函数声明和变量声明都会被提升。</strong>但是一个值得注意的细节（这个细节可以出现在有多个“重复”声明的代码中）是<strong>函数会首先被提升，然后才是变量</strong><br>考虑以下代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">foo();</span><br><span class="line">var foo;</span><br><span class="line">function foo()&#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo = function()&#123;</span><br><span class="line">    console.log(2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>会输出1二不是2！这个代码片段会被引擎理解为如下形式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">foo();//1</span><br><span class="line">foo = function()&#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">foo();//1</span><br><span class="line">foo = function()&#123;</span><br><span class="line">    console.log(2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -403,7 +403,7 @@
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们习惯将var a = 2;看作一个声明，而实际上Javascript引擎并不这么认为。它将var a和a = 2当作两个单独的声明，第一个是编译阶段的任务，而第二个则是执行阶段的任务。</p>
 <p>这意味着无论作用域中的声明出现在什么地方，都将在代码本身被执行前首先进行处理。可以将这个过程形象地想象成所有的声明（变量和函数）都会被“移动”到各自作用域的最顶端，这个过程被称为提升。</p>
 <p>声明本身会被提升，而包括函数表达式的赋值在内的赋值操作并不会提升。<br>要注意避免重复声明，特别是当普通的var 声明和函数声明混合在一起的时候，否则会引起很多危险的问题！</p>
-<p>##鸣谢<br>《你不知道的Javascript 上卷》</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>《你不知道的Javascript 上卷》</p>
 
       
     </div>
@@ -593,7 +593,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、先有鸡还有先有蛋？"><span class="nav-number">1.</span> <span class="nav-text">一、先有鸡还有先有蛋？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你需要知道的编译器"><span class="nav-number">2.</span> <span class="nav-text">你需要知道的编译器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数优先"><span class="nav-number">3.</span> <span class="nav-text">函数优先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鸣谢"><span class="nav-number">5.</span> <span class="nav-text">鸣谢</span></a></li></ol></div>
             
           </div>
         </section>
